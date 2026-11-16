@@ -1,0 +1,135 @@
+/* One chapter per screen; the journey is controlled by explicit page buttons. */
+html:has(.paged-site){height:100%;scroll-behavior:auto;scroll-padding:0}
+.paged-site{--header-h:76px;--pager-h:76px;height:100dvh;overflow:hidden;display:grid;grid-template-rows:var(--header-h) minmax(0,1fr) var(--pager-h)}
+.paged-site .nav{height:100%;margin:0;padding:0 4.3%;background:var(--paper);position:relative;z-index:10;transition:background .25s,color .25s}
+.paged-site .nav nav a[aria-current=page]:after{width:100%}
+.paged-site main{min-height:0;overflow:hidden;position:relative}
+.paged-site main>section{height:100%;width:100%;max-width:none;margin:0;padding:26px 5.5% 22px;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#a4ad9833 transparent;scroll-behavior:auto}
+.paged-site main>section[hidden]{display:none!important}
+.paged-site main>section.current-page{display:block}
+.paged-site>footer{display:none}
+.paged-site main>section.page-enter{animation:chapterIn .4s var(--ease) both}
+.paged-site main>section h1:focus,.paged-site main>section h2:focus{outline:none}
+.paged-site .section-head{width:100%;margin-bottom:22px;gap:26px;max-width:none;flex-shrink:0}
+.paged-site .section-head h2{font-size:clamp(27px,2.75vw,42px);line-height:1.3;margin-bottom:0}
+.paged-site .section-head .eyebrow{font-size:9px;margin-bottom:10px}
+.paged-site .section-desc{font-size:11px;line-height:1.9;margin-bottom:0}
+.page-navigation{position:relative;z-index:12;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 max(190px,4.3%) 0 4.3%;border-top:1px solid var(--line);background:var(--paper);transition:background .25s,color .25s}
+.page-navigation>button{display:flex;align-items:center;gap:20px;min-width:195px;border:0;background:none;padding:17px 0;color:var(--ink);font-size:12px;text-align:left}
+.page-navigation>button b{font-weight:400;letter-spacing:1px}
+.page-navigation>button>span{font-size:24px;font-weight:300;transition:transform .25s}
+.page-navigation .page-next{justify-content:flex-end}
+.page-next:hover>span{transform:translateX(5px)}
+.page-prev:hover>span{transform:translateX(-5px)}
+.page-prev:disabled{opacity:.22}
+.page-position{display:flex;align-items:center;justify-content:center;gap:22px;min-width:0}
+.page-count{font-size:10px;letter-spacing:2px;color:var(--muted);white-space:nowrap}
+.page-current{font-size:10px;letter-spacing:1px;width:78px;color:var(--muted)}
+.page-steps{display:flex;gap:13px;align-items:center}
+.page-steps button{border:0;background:none;color:var(--muted);padding:6px 2px;display:flex;gap:5px;flex-direction:column;align-items:center;font-size:9px;min-width:18px}
+.page-steps button i{width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.35;transition:transform .25s,opacity .25s}
+.page-steps button[aria-current=step]{color:var(--red)}
+.page-steps button[aria-current=step] i{opacity:1;transform:scale(1.5)}
+.page-dark .nav,.page-dark .page-navigation{background:var(--dark);color:var(--paper);border-color:#8da48533}
+.page-dark .nav a:after{background:#c7b282}
+.page-dark .page-navigation>button{color:#e4dbc3}
+.page-dark .page-count,.page-dark .page-current,.page-dark .page-steps button{color:#9eb299}
+.page-dark .page-steps button[aria-current=step]{color:#e1c693}
+.paged-site #toast{bottom:91px}
+.paged-site #home{display:flex;flex-direction:column;padding:23px 4.3% 0;overflow:hidden}
+.paged-site .hero-grid{flex:1;min-height:0;width:100%;grid-template-columns:1fr 1fr;gap:35px}
+.paged-site .hero-copy{padding:20px 0}
+.paged-site h1{font-size:clamp(40px,5.2vw,78px);margin-bottom:22px}
+.paged-site .hero-copy .eyebrow{margin-bottom:20px;font-size:9px}
+.paged-site .hero-desc{font-size:13px;line-height:1.9;margin-bottom:22px}
+.paged-site .hero-meta{margin-top:27px}
+.paged-site .hero-art{height:min(58dvh,600px);min-height:0}
+.paged-site .hero-square{width:min(74%,50dvh,520px)}
+.paged-site .hero-bottom{height:54px;flex-shrink:0}
+.paged-site .hero-bottom>a{display:none}
+.paged-site #collection{display:flex;flex-direction:column}
+.paged-site .cave-gallery{flex:1;min-height:0;width:100%;gap:30px;align-items:center}
+.paged-site .cave-art-button{max-height:calc(100dvh - 370px);width:auto;max-width:100%;margin:auto;aspect-ratio:1}
+.paged-site .cave-entry-title{margin-top:20px}
+.paged-site .cave-entry h3{font-size:23px}
+.paged-site .cave-entry p{font-size:11px;margin-top:8px}
+.paged-site .collection-note{margin-top:20px;font-size:9px}
+.paged-site #explore{display:flex;flex-direction:column}
+.paged-site .explore-choice{width:100%;padding:8px 0;margin:0 0 15px;flex-shrink:0}
+.paged-site .explore-choice select{padding-top:7px;padding-bottom:7px}
+.paged-site .explorer-layout{flex:1;min-height:0;width:100%;gap:28px}
+.paged-site .stage-wrap{display:flex;flex-direction:column;min-height:0}
+.paged-site .stage-3d{flex:1;height:auto;min-height:180px}
+.paged-site .stage-top{flex-shrink:0;height:38px}
+.paged-site .stage-controls{padding:10px 17px;flex-shrink:0}
+.paged-site .quick-controls{padding:0 17px 12px;gap:13px;flex-shrink:0}
+.paged-site .quick-controls .blast-btn{padding:8px 12px;font-size:10px}
+.paged-site .quick-controls>span{display:none}
+.paged-site .layer-panel{min-height:0;overflow:auto;scrollbar-width:thin;padding-right:5px}
+.paged-site .layer-panel .panel-kicker{margin-bottom:12px}
+.paged-site .layer-info{margin:18px 0 14px}
+.paged-site .layer-info p{min-height:0;font-size:11px;line-height:1.9}
+.paged-site .layer-info h3{font-size:20px}
+.paged-site .layer-choice{padding:8px 2px}
+.paged-site .layer-choice span{font-size:13px}
+.paged-site #play{display:flex;flex-direction:column}
+.paged-site .restoration-layout{width:100%;flex:1;min-height:0;gap:5%;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
+.paged-site .restoration-left{max-width:min(100%,calc(100dvh - 360px));width:100%;margin:0 auto}
+.paged-site .board-heading{padding-bottom:11px}
+.paged-site .board-foot{padding-top:10px;font-size:9px}
+.paged-site .restoration-panel{overflow:auto;max-height:100%;scrollbar-width:thin;padding-right:6px}
+.paged-site .game-toolbar{margin-bottom:14px}
+.paged-site .piece-tray{max-width:380px;min-height:0;gap:6px;padding:8px}
+.paged-site .piece-detail{margin-top:14px;padding-bottom:12px}
+.paged-site .piece-detail>div:first-child{width:68px}
+.paged-site .restoration-panel .game-status{min-height:0;padding:12px 0}
+.paged-site .restoration-panel .small-note{margin-top:12px}
+.paged-site #patterns{display:flex;flex-direction:column}
+.paged-site .study-context{padding-top:10px}
+.paged-site .study-context select{padding:7px 13px}
+.paged-site .study-tabs{margin:9px 0 10px;gap:30px}
+.paged-site .study-tabs>button{padding:10px 2px;font-size:13px}
+.paged-site #studyPanel{flex:1;min-height:0;overflow:auto;padding:0 7px 15px 0;scrollbar-width:thin}
+.paged-site .motif-index{margin-bottom:18px;gap:10px}
+.paged-site .study-layout{grid-template-columns:minmax(0,.85fr) minmax(0,1.2fr);gap:5%}
+.paged-site .study-original{position:sticky;top:0}
+.paged-site .study-plate{max-width:440px;width:100%;margin:auto}
+.paged-site .study-original figcaption{margin-top:10px}
+.paged-site .motif-dossier-top{margin-bottom:16px;gap:15px}
+.paged-site .motif-dossier h3,.paged-site .color-dossier h3{font-size:28px}
+.paged-site .extracted-preview{width:138px}
+.paged-site .extracted-preview svg{height:105px}
+.paged-site .meaning-emblem{margin-top:12px}
+.paged-site .meaning-emblem strong{font-size:21px}
+.paged-site .motif-facts>div{padding:13px 0;gap:13px;grid-template-columns:74px 1fr}
+.paged-site .motif-facts dd{font-size:11px;line-height:1.9}
+.paged-site .motif-facts .meaning-wish{font-size:14px}
+.paged-site .extraction-method{margin-top:25px;padding-top:18px}
+.paged-site .color-intro{margin:0 0 17px;font-size:11px}
+.paged-site .color-hero{margin-bottom:17px}
+.paged-site .color-hero>i{width:85px;height:85px}
+.paged-site #wear{display:flex;flex-direction:column}
+.paged-site .wear-layout{width:100%;flex:1;min-height:0;gap:5%;grid-template-columns:minmax(0,1fr) minmax(0,1.04fr)}
+.paged-site .product-stage{height:100%;position:relative;top:0;min-height:280px;overflow:hidden}
+.paged-site .product-assembly{scale:.82;top:28%}
+.paged-site .product-panel{height:100%;min-height:0;overflow:auto;scrollbar-width:thin;padding:0 9px 15px 0}
+.paged-site .product-panel>.panel-kicker{margin-bottom:12px}
+.paged-site .studio-title h3{font-size:25px;margin-bottom:15px}
+.paged-site .studio-cave-switch{padding-bottom:12px;margin-bottom:12px}
+.paged-site .studio-tabs{margin-bottom:17px}
+.paged-site .motif-options{grid-template-columns:repeat(4,1fr)}
+.paged-site .motif-option svg{max-height:90px}
+.paged-site #archive{display:flex;flex-direction:column;justify-content:center}
+.paged-site .archive-grid{gap:8%;max-width:1250px;width:100%;margin:0 auto}
+.paged-site #archive>.eyebrow{max-width:1250px;width:100%;margin:0 auto 28px}
+.paged-site .archive h2{font-size:42px}
+@keyframes chapterIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media(max-height:760px) and (min-width:801px){.paged-site .product-assembly{scale:.62;top:25%}}
+@media(min-height:1050px) and (min-width:801px){.paged-site .product-assembly{scale:1;top:38%}}
+@media(max-height:760px) and (min-width:901px){.paged-site{--header-h:64px;--pager-h:66px}.paged-site main>section{padding-top:18px;padding-bottom:16px}.paged-site .section-head{margin-bottom:15px}.paged-site .section-head h2{font-size:29px}.paged-site .section-head h2 br{display:none}.paged-site .section-head .eyebrow{margin-bottom:6px}.paged-site .hero-top{font-size:9px}.paged-site .hero-copy .eyebrow{margin-bottom:12px}.paged-site .hero-desc{font-size:11px}.paged-site .hero-meta{margin-top:19px}.paged-site .hero-bottom{height:42px}.paged-site .hero-art{height:55dvh}.paged-site .cave-art-button{max-height:calc(100dvh - 320px)}.paged-site .restoration-left{max-width:min(100%,calc(100dvh - 300px))}.paged-site .layer-choice{padding:6px 2px}}
+@media(max-width:1000px){.page-position{gap:12px}.page-current{display:none}.page-steps{gap:9px}.page-navigation>button{min-width:150px;font-size:11px;gap:12px}.paged-site .nav nav{gap:18px}.paged-site .cave-entry-title{display:block}.paged-site .cave-entry h3{font-size:21px}.paged-site .section-desc{max-width:300px;font-size:10px}.paged-site .study-layout{gap:4%;grid-template-columns:.8fr 1.2fr}.paged-site .extracted-preview{width:110px}.paged-site .extracted-preview svg{height:85px}}
+@media(max-width:800px){.paged-site{--header-h:112px;--pager-h:70px}.paged-site .nav{padding:13px 5% 8px;flex-wrap:wrap;gap:0;align-content:center}.paged-site .nav .brand{font-size:22px}.paged-site .nav nav{order:3;width:100%;gap:9px;justify-content:space-between;margin-top:9px;font-size:11px}.paged-site .nav nav a{font-size:11px}.paged-site .nav .source-link{font-size:0}.paged-site main>section{padding:24px 5% 22px}.page-navigation{padding:0 5%;gap:10px}.page-navigation>button{min-width:0;gap:9px;font-size:10px;padding:10px 0}.page-navigation>button>span{font-size:20px}.page-prev b{display:none}.page-count{font-size:9px;letter-spacing:1px}.page-steps{gap:6px}.page-steps button{min-width:14px;font-size:8px}.page-position{gap:9px}.paged-site .section-head{display:block}.paged-site .section-head h2{font-size:30px}.paged-site .section-desc{margin-top:12px;max-width:none;font-size:11px}.paged-site #home{overflow:auto;padding:20px 5% 0}.paged-site .hero-top{font-size:8px;gap:10px;letter-spacing:1px}.paged-site .hero-grid{display:flex;flex-direction:column;gap:0;flex:none}.paged-site .hero-copy{padding:29px 0 15px;width:100%}.paged-site h1{font-size:43px;letter-spacing:-1.5px;margin-bottom:18px}.paged-site .hero-desc{font-size:12px;margin-bottom:20px}.paged-site .hero-meta{font-size:9px;margin-top:20px}.paged-site .hero-art{width:100%;height:340px;margin:5px 0 20px}.paged-site .hero-square{width:75%;max-width:270px}.paged-site .hero-bottom{font-size:8px;gap:16px}.paged-site #collection{display:block}.paged-site .cave-gallery{display:grid;grid-template-columns:1fr;gap:23px;margin-top:25px}.paged-site .cave-entry{grid-template-columns:125px 1fr;column-gap:19px}.paged-site .cave-art-button{width:100%;max-height:none;padding:5px}.paged-site .cave-entry-title{margin-top:0}.paged-site .cave-entry p{font-size:10px}.paged-site .cave-entry h3{font-size:20px}.paged-site .collection-note{margin-top:22px}.paged-site #explore,.paged-site #play,.paged-site #patterns,.paged-site #wear{display:block}.paged-site .explorer-layout,.paged-site .restoration-layout,.paged-site .wear-layout,.paged-site .study-layout{display:grid;grid-template-columns:1fr;gap:27px}.paged-site .explore-choice{margin:19px 0;flex-wrap:wrap;gap:12px}.paged-site .explore-choice a{width:100%;margin:0}.paged-site .stage-3d{height:420px;flex:auto}.paged-site .stage-wrap{min-height:0}.paged-site .layer-panel{overflow:visible;padding:0}.paged-site .layer-list{grid-template-columns:repeat(7,1fr)}.paged-site .layer-choice{padding:11px 0}.paged-site .layer-choice span{font-size:11px}.paged-site .layer-info{margin-top:20px}.paged-site .restoration-left{max-width:440px}.paged-site .restoration-panel{overflow:visible}.paged-site .piece-tray{max-width:none}.paged-site .study-context{flex-direction:column;gap:12px;align-items:stretch}.paged-site .study-tabs{margin-top:14px}.paged-site #studyPanel{overflow:visible;padding-right:0}.paged-site .motif-index{margin-bottom:20px;gap:6px}.paged-site .study-original{position:static;width:100%;max-width:440px}.paged-site .extracted-preview{width:125px}.paged-site .extracted-preview svg{height:95px}.paged-site .motif-facts dd{font-size:12px}.paged-site .product-stage{height:480px;min-height:0}.paged-site .product-assembly{scale:.86;top:40%}.paged-site .product-panel{overflow:visible;padding-right:0;height:auto}.paged-site .wear-layout{margin-top:22px}.paged-site .motif-options{grid-template-columns:repeat(4,1fr)}.paged-site .motif-option svg{max-height:none}.paged-site .archive-grid{grid-template-columns:1fr;gap:22px}.paged-site .archive h2{font-size:34px}.paged-site #archive{justify-content:flex-start;padding-top:34px}.paged-site #toast{bottom:85px;max-width:90vw;font-size:11px}}
+@media(prefers-reduced-motion:reduce){.paged-site main>section.page-enter{animation:none}}
+/* Keep the host's bottom-right editing toolbar clear of journey controls. */
+@media(max-width:1100px){.page-position .page-current{display:none}.page-position{gap:10px}.page-steps{gap:8px}.page-navigation>button{min-width:155px}}
+@media(max-width:800px){.paged-site{--pager-h:112px}.page-navigation{padding:0 5% 42px}.page-navigation>button{min-width:0}.paged-site #toast{bottom:125px}}
